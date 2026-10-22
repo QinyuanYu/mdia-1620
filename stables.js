@@ -118,4 +118,7 @@ myHorses[0].name + " is late. Please pay " + latePayment(myHorses[0]) + " dollar
 console.log(delayMessage)
 
 
+let horse = "doudou"
+
+
 
