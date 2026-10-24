@@ -104,7 +104,7 @@ let doudou = {
     favoriteTreat: "apples",
     age: 5,
     monthlyFee: 1500,
-    isHorseInside: true,
+    isHorseInside: false,
     dislikeFood: "carrot",
     skinColor: "white",
 };
@@ -115,7 +115,7 @@ let mimi = {
     favoriteTreat: "oranges",
     age: 6,
     monthlyFee: 1000,
-    isHorseInside: true,
+    isHorseInside: false,
     dislikeFood: "cabbage",
     skinColor: "black",
 };
@@ -151,7 +151,7 @@ horses.push(lala);
 
 horses[0].isHorseHungry = true;
 horses[1].isHorseHungry = true;
-horses[2].isHorseHungry = false;
+horses[2].isHorseHungry = true;
 horses[3].isHorseHungry = false;
 
 let welcomeMessage = 
@@ -215,5 +215,30 @@ function stallsAvailable(stallsEmpty){
 
 stallsAvailable(stallsNumber);
 
+function latePayment(horse){
+console.log(
+"I'm sorry to inform you that the monthly payment for " +
+horse.name + 
+" is late. Please pay " + 
+horse.monthlyFee*1.2 + 
+" dollars."
+) 
+}
 
+latePayment(horses[0]);
 
+function horseNickname(horse){
+    return horse.nickname
+}
+
+if(horses[0].isHorseHungry == true) {
+    console.log(horseNickname(horses[0]) + 
+    " is hungry and waiting for her lunch."
+)
+}
+else{
+    console.log(horseNickname(horses[0]) +
+    " is eating " + 
+    horses[0].favoriteTreat + "."
+)
+}
