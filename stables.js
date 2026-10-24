@@ -131,6 +131,8 @@ let nini = {
     skinColor: "brown",
 };
 
+let stableName = "Happy Stable";
+
 let horses = [doudou, mimi, nini];
 
 
@@ -140,7 +142,7 @@ let lala = {
     favoriteTreat: "strawberry",
     age: 6,
     monthlyFee: 1200,
-    isHorseInside: false,
+    isHorseInside: true,
     dislikeFood: "tomato",
     skinColor: "gray",
 }
@@ -152,9 +154,66 @@ horses[1].isHorseHungry = true;
 horses[2].isHorseHungry = false;
 horses[3].isHorseHungry = false;
 
+let welcomeMessage = 
+"Welcome to " + 
+stableName + ". " + 
+"Here are my horses: " + 
+horses[0].name +
+", " + 
+horses[1].name + 
+", " +
+horses[2].name + 
+", and " + 
+horses[3].name +
+"."
+
+console.log(welcomeMessage)
+
+
+
 let stallsNumber = 8;
 
+function stallsAvailable(stallsEmpty){
+    if(
+    horses[0].isHorseInside == true && 
+    horses[1].isHorseInside == true && 
+    horses[2].isHorseInside == true && 
+    horses[3].isHorseInside == true){
+    console.log(stallsEmpty-4 + " stalls are available.")
+    }
 
+    else if(
+    (horses[0].isHorseInside == true && horses[1].isHorseInside == true && horses[2].isHorseInside == true) ||
+    (horses[0].isHorseInside == true && horses[1].isHorseInside == true && horses[3].isHorseInside == true) ||
+    (horses[0].isHorseInside == true && horses[2].isHorseInside == true && horses[3].isHorseInside == true) ||
+    (horses[1].isHorseInside == true && horses[2].isHorseInside == true && horses[3].isHorseInside == true) ){
+        console.log(stallsEmpty-3 + " stalls are available now.")
+    }
+
+    else if(
+    (horses[0].isHorseInside == true && horses[1].isHorseInside == true) ||
+    (horses[0].isHorseInside == true && horses[2].isHorseInside == true) ||
+    (horses[0].isHorseInside == true && horses[3].isHorseInside == true) ||
+    (horses[1].isHorseInside == true && horses[2].isHorseInside == true) ||
+    (horses[1].isHorseInside == true && horses[3].isHorseInside == true) ||
+    (horses[2].isHorseInside == true && horses[3].isHorseInside == true) ){
+        console.log(stallsEmpty - 2 + " stalls are available now.")
+    }
+
+    else if(
+    horses[0].isHorseInside == true ||
+    horses[1].isHorseInside == true ||
+    horses[2].isHorseInside == true ||
+    horses[3].isHorseInside == true ){
+        console.log(stallsEmpty - 1 + " stalls are available now.")
+    }
+
+    else{
+        console.log(stallsEmpty + " stalls are available now.")
+    }
+}
+
+stallsAvailable(stallsNumber);
 
 
 
