@@ -53,69 +53,124 @@
 // NOTE: UNLESS SPECIFIED, VARIABLE NAMING IS UP TO YOU. THERE SHOULD BE NO HARD-CODED
 // NUMBERS OR STRINGS WHERE VARIBALES WOULD BE PREFERRED.
 
-//------------------------- Seting up shop (Assignment 1) -------------------------//
-
-// Store information about three horses in your stables.
-// Each horse should have the following information associated with it:
-//
-// - the name of a horse at your stable
-// - the age of the horse
-// - what the horse likes to snack on
-// - the cost to board the horse monthly
-// - the fee for a late payment (monthly rate + 20%)
-//
-// Create a variable and use it to store the name of your stable.
-// Create a variable and use it to store a message for visitors to the stable as a string. It should include the name of your stable.
-// Create a variable and use it to store a message that monthly payment is late, and the amount owing. Include the name of one of your horses in the message.
-
 
 
 let doudou = {
     name: "DouDou",
+    nickname: "Do",
+    favoriteTreat: "apples",
     age: 5,
-    favoriteSnacks: "apples",
-    monthlyFee: 1500
-}
+    monthlyFee: 1500,
+    isHorseInside: false,
+    dislikeFood: "carrot",
+    skinColor: "white",
+};
 
 let mimi = {
     name: "MiMi",
+    nickname: "Mi",
+    favoriteTreat: "oranges",
     age: 6,
-    favoriteSnacks: "oranges",
-    monthlyFee: 1000
-}
+    monthlyFee: 1000,
+    isHorseInside: false,
+    dislikeFood: "cabbage",
+    skinColor: "black",
+};
 
 let nini = {
     name: "NiNi",
+    nickname: "Re",
+    favoriteTreat: "grapes",
     age: 4,
-    favoriteSnacks: "grapes",
-    monthlyFee: 2000
-}
+    monthlyFee: 2000,
+    isHorseInside: false,
+    dislikeFood: "spinach",
+    skinColor: "brown",
+};
 
 let stableName = "Happy Stable";
 
-let myHorses = [doudou, mimi, nini];
+let horses = [doudou, mimi, nini];
 
 
+let lala = {
+    name: "LaLa",
+    nickname: "La",
+    favoriteTreat: "strawberry",
+    age: 6,
+    monthlyFee: 1200,
+    isHorseInside: true,
+    dislikeFood: "tomato",
+    skinColor: "gray",
+}
+
+horses.push(lala);
+
+horses[0].isHorseHungry = true;
+horses[1].isHorseHungry = true;
+horses[2].isHorseHungry = true;
+horses[3].isHorseHungry = false;
+
+//Horses inside the stall are eating, and they are not hungry.
+//Horses outside the stall are running, and they are hungry.
 
 
-function latePayment(horse){
-    return horse.monthlyFee*1.2
-    };
-
-myHorses[0].latePayment = latePayment(myHorses[0]);
-myHorses[1].latePayment = latePayment(myHorses[1]);
-myHorses[2].latePayment = latePayment(myHorses[2]);
-
-
-let welcomeMessage = "Welcome to " + stableName + ". " + 
-"Here are my horses: " + myHorses[0].name + ", " + myHorses[1].name + ", and " + myHorses[2].name + "."
+let welcomeMessage = 
+"Welcome to " + 
+stableName + ". " + 
+"Here are my horses: " + 
+horses[0].name +
+", " + 
+horses[1].name + 
+", " +
+horses[2].name + 
+", and " + 
+horses[3].name +
+"."
 
 console.log(welcomeMessage)
 
-let delayMessage = "I'm sorry to inform you that the monthly payment for " +
-myHorses[0].name + " is late. Please pay " + latePayment(myHorses[0]) + " dollars."
-
-console.log(delayMessage)
 
 
+let totalStalls = 8;
 
+function stallsAvailable(stall, horse){
+    return stall - horse;
+}
+
+console.log(
+    "There are " + 
+    stallsAvailable(totalStalls, horses.length) + 
+    " stalls available."
+)
+
+
+let latePaymentRate = 1.2;
+
+function latePayment(monthlyFee, latePaymentRate){
+    return monthlyFee * latePaymentRate
+}
+
+console.log(
+"I'm sorry to inform you that the monthly payment for " +
+horses[0].name + 
+" is late. Please pay " + 
+latePayment(horses[0].monthlyFee, latePaymentRate) + 
+" dollars.")
+
+
+function horseNickname(horse){
+    return horse.nickname
+}
+
+if(horses[0].isHorseHungry == true) {
+    console.log(horseNickname(horses[0]) + 
+    " is hungry and waiting for her lunch."
+)
+}
+else{
+    console.log(horseNickname(horses[0]) +
+    " is eating " + 
+    horses[0].favoriteTreat + "."
+)
+}
