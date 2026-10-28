@@ -132,61 +132,32 @@ console.log(welcomeMessage)
 
 
 
-let stallsNumber = 8;
+let totalStalls = 8;
 
-function stallsAvailable(stallsEmpty){
-    if(
-    horses[0].isHorseInside == true && 
-    horses[1].isHorseInside == true && 
-    horses[2].isHorseInside == true && 
-    horses[3].isHorseInside == true){
-    console.log(stallsEmpty-4 + " stalls are available.")
-    }
-
-    else if(
-    (horses[0].isHorseInside == true && horses[1].isHorseInside == true && horses[2].isHorseInside == true) ||
-    (horses[0].isHorseInside == true && horses[1].isHorseInside == true && horses[3].isHorseInside == true) ||
-    (horses[0].isHorseInside == true && horses[2].isHorseInside == true && horses[3].isHorseInside == true) ||
-    (horses[1].isHorseInside == true && horses[2].isHorseInside == true && horses[3].isHorseInside == true) ){
-        console.log(stallsEmpty-3 + " stalls are available now.")
-    }
-
-    else if(
-    (horses[0].isHorseInside == true && horses[1].isHorseInside == true) ||
-    (horses[0].isHorseInside == true && horses[2].isHorseInside == true) ||
-    (horses[0].isHorseInside == true && horses[3].isHorseInside == true) ||
-    (horses[1].isHorseInside == true && horses[2].isHorseInside == true) ||
-    (horses[1].isHorseInside == true && horses[3].isHorseInside == true) ||
-    (horses[2].isHorseInside == true && horses[3].isHorseInside == true) ){
-        console.log(stallsEmpty - 2 + " stalls are available now.")
-    }
-
-    else if(
-    horses[0].isHorseInside == true ||
-    horses[1].isHorseInside == true ||
-    horses[2].isHorseInside == true ||
-    horses[3].isHorseInside == true ){
-        console.log(stallsEmpty - 1 + " stalls are available now.")
-    }
-
-    else{
-        console.log(stallsEmpty + " stalls are available now.")
-    }
+function stallsAvailable(stall, horse){
+    return stall - horse;
 }
 
-stallsAvailable(stallsNumber);
+console.log(
+    "There are " + 
+    stallsAvailable(totalStalls, horses.length) + 
+    " stalls available."
+)
 
-function latePayment(horse){
+
+let latePaymentRate = 1.2;
+
+function latePayment(monthlyFee, latePaymentRate){
+    return monthlyFee * latePaymentRate
+}
+
 console.log(
 "I'm sorry to inform you that the monthly payment for " +
-horse.name + 
+horses[0].name + 
 " is late. Please pay " + 
-horse.monthlyFee*1.2 + 
-" dollars."
-) 
-}
+latePayment(horses[0].monthlyFee, latePaymentRate) + 
+" dollars.")
 
-latePayment(horses[0]);
 
 function horseNickname(horse){
     return horse.nickname
