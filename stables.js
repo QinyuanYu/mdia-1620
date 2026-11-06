@@ -163,19 +163,24 @@ function horseNickname(horse){
 
 console.log(horseNickname(horses[0]))
 
-function whoLikesThisTreat(allHorses){
-for (const myHorse of allHorses){
-    if(myHorse.favoriteTreat == "🍊oranges"){
-        console.log(myHorse.name + " likes 🍊oranges!")
-        return myHorse.name
-    }else{
-        console.log(myHorse.name +  " doesn't like this treat.")
+
+//Find which horse likes oranges
+
+function whoLikesThisTreat(allHorses, treat){
+    for (const myHorse of allHorses){
+        if(myHorse.favoriteTreat == treat){
+            console.log(myHorse.name + " likes " + treat)
+            return myHorse.name
+            }else{
+            console.log(myHorse.name +  " doesn't like this treat.")
+        }
     }
 }
-}
 
-whoLikesThisTreat(horses);
+whoLikesThisTreat(horses, "🍊oranges");
 
+
+//a function including one of my unique horse properties
 
 function horseSkinColor(allHorses){
     for(const horse of allHorses){
@@ -184,3 +189,56 @@ function horseSkinColor(allHorses){
 }
 
 horseSkinColor(horses);
+
+
+//evening = false Move the horses that stay inside the stalls outside.
+//evening = true  Move the horses that stay outside the stalls inside.
+
+function moveHorse(allHorses, evening){
+    for (const myHorse of allHorses){
+        if(myHorse.isHorseInside == true && evening == false){
+            myHorse.isHorseInside = false;
+            console.log("It's morning!" + 
+                myHorse.name + 
+                " has been moved outside and spend time in the sun.")
+
+        }else if(myHorse.isHorseInside == false && evening == true){
+            myHorse.isHorseInside = true;
+            console.log("It's evening!" + 
+                myHorse.name + 
+                " is moved inside the stalls")
+        }
+    }
+}
+
+let evening = false;
+moveHorse(horses, evening);
+
+
+
+//Food! Move horses indside and feed them treats.
+
+function eatInside(allHorse){
+    for (const myHorse of allHorse){
+        if(myHorse.isHorseInside == false){
+            myHorse.isHorseInside =true;
+            console.log(myHorse.name + " comes in from outside.")
+        }else{
+            console.log(myHorse.name + " is inside.")
+        }
+        console.log(myHorse.name + " is fed the " + myHorse.favoriteTreat)
+    }
+}
+
+eatInside(horses);
+
+evening = true;
+moveHorse(horses, evening);
+
+
+
+
+
+
+
+
