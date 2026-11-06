@@ -58,7 +58,7 @@
 let doudou = {
     name: "DouDou",
     nickname: "Do",
-    favoriteTreat: "apples",
+    favoriteTreat: "🍎apples",
     age: 5,
     monthlyFee: 1500,
     isHorseInside: false,
@@ -69,7 +69,7 @@ let doudou = {
 let mimi = {
     name: "MiMi",
     nickname: "Mi",
-    favoriteTreat: "oranges",
+    favoriteTreat: "🍊oranges",
     age: 6,
     monthlyFee: 1000,
     isHorseInside: false,
@@ -80,7 +80,7 @@ let mimi = {
 let nini = {
     name: "NiNi",
     nickname: "Re",
-    favoriteTreat: "grapes",
+    favoriteTreat: "🍇grapes",
     age: 4,
     monthlyFee: 2000,
     isHorseInside: false,
@@ -96,7 +96,7 @@ let horses = [doudou, mimi, nini];
 let lala = {
     name: "LaLa",
     nickname: "La",
-    favoriteTreat: "strawberry",
+    favoriteTreat: "🍓strawberry",
     age: 6,
     monthlyFee: 1200,
     isHorseInside: true,
@@ -106,13 +106,9 @@ let lala = {
 
 horses.push(lala);
 
-horses[0].isHorseHungry = true;
-horses[1].isHorseHungry = true;
-horses[2].isHorseHungry = true;
-horses[3].isHorseHungry = false;
-
-//Horses inside the stall are eating, and they are not hungry.
-//Horses outside the stall are running, and they are hungry.
+for (const horse of horses){
+    horse.isHungry = false;
+}
 
 
 let welcomeMessage = 
@@ -131,11 +127,13 @@ horses[3].name +
 console.log(welcomeMessage)
 
 
+//horses, totalStalls are variables.
+//allStalls, allHorses are parameters.
 
 let totalStalls = 8;
 
-function stallsAvailable(stall, horse){
-    return stall - horse;
+function stallsAvailable(allStalls, allHorses){
+    return allStalls - allHorses;
 }
 
 console.log(
@@ -163,14 +161,84 @@ function horseNickname(horse){
     return horse.nickname
 }
 
-if(horses[0].isHorseHungry == true) {
-    console.log(horseNickname(horses[0]) + 
-    " is hungry and waiting for her lunch."
-)
+console.log(horseNickname(horses[0]))
+
+
+//Find which horse likes oranges
+
+function whoLikesThisTreat(allHorses, treat){
+    for (const myHorse of allHorses){
+        if(myHorse.favoriteTreat == treat){
+            console.log(myHorse.name + " likes " + treat)
+            return myHorse.name
+            }else{
+            console.log(myHorse.name +  " doesn't like this treat.")
+        }
+    }
 }
-else{
-    console.log(horseNickname(horses[0]) +
-    " is eating " + 
-    horses[0].favoriteTreat + "."
-)
+
+whoLikesThisTreat(horses, "🍊oranges");
+
+
+//a function including one of my unique horse properties
+
+function horseSkinColor(allHorses){
+    for(const horse of allHorses){
+        console.log(horse.name + "'s skin color is " + horse.skinColor)
+    }
 }
+
+horseSkinColor(horses);
+
+
+//evening = false Move the horses that stay inside the stalls outside.
+//evening = true  Move the horses that stay outside the stalls inside.
+
+function moveHorse(allHorses, evening){
+    for (const myHorse of allHorses){
+        if(myHorse.isHorseInside == true && evening == false){
+            myHorse.isHorseInside = false;
+            console.log("It's morning!" + 
+                myHorse.name + 
+                " has been moved outside and spend time in the sun.")
+
+        }else if(myHorse.isHorseInside == false && evening == true){
+            myHorse.isHorseInside = true;
+            console.log("It's evening!" + 
+                myHorse.name + 
+                " is moved inside the stalls")
+        }
+    }
+}
+
+let evening = false;
+moveHorse(horses, evening);
+
+
+
+//Food! Move horses indside and feed them treats.
+
+function eatInside(allHorse){
+    for (const myHorse of allHorse){
+        if(myHorse.isHorseInside == false){
+            myHorse.isHorseInside =true;
+            console.log(myHorse.name + " comes in from outside.")
+        }else{
+            console.log(myHorse.name + " is inside.")
+        }
+        console.log(myHorse.name + " is fed the " + myHorse.favoriteTreat)
+    }
+}
+
+eatInside(horses);
+
+evening = true;
+moveHorse(horses, evening);
+
+
+
+
+
+
+
+
