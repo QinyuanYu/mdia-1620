@@ -163,3 +163,24 @@ function horseNickname(horse){
 
 console.log(horseNickname(horses[0]))
 
+function whoLikesThisTreat(allHorses){
+for (const myHorse of allHorses){
+    if(myHorse.favoriteTreat == "🍊oranges"){
+        console.log(myHorse.name + " likes 🍊oranges!")
+        return myHorse.name
+    }else{
+        console.log(myHorse.name +  " doesn't like this treat.")
+    }
+}
+}
+
+whoLikesThisTreat(horses);
+
+
+function horseSkinColor(allHorses){
+    for(const horse of allHorses){
+        console.log(horse.name + "'s skin color is " + horse.skinColor)
+    }
+}
+
+horseSkinColor(horses);
